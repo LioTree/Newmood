@@ -17,7 +17,8 @@ if __name__ == '__main__':
     url2 += re.search(pattern2,results[random.randint(0,len(results)-1)]).group()
     print("Get "+url2)
     r = requests.get(url2)
-    pattern3 = 'http://.*?jpg'   #匹配jpg图片下载地址的正则
+    #pattern3 = 'http://.*?jpg'  
+    pattern3 = 'https://h1.ioliu.cn//bing/.*?jpg' #匹配jpg图片下载地址的正则
     jpg_url = re.search(pattern3,r.text).group()
     print("Get "+jpg_url)
     wget_jpg = 'wget '+jpg_url+' -O a.jpg'
@@ -26,4 +27,3 @@ if __name__ == '__main__':
     path = os.getcwd()
     ch_wall = 'gsettings set org.gnome.desktop.background picture-uri '+'file://'+path+'/a.jpg'
     subprocess.run(ch_wall,shell=True)
-    
